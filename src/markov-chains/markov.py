@@ -11,14 +11,15 @@ def open_and_read_file(file_path):
     # your code goes here
 
     contents = open(file_path).read()
+    #open file and return a string including spaces
 
-    print type(contents)
+    # print type(contents)
 
     return contents
     """This should be a variable that contains your file text as one long string"""
 
-contents = open_and_read_file("green-eggs.txt")
-# print contents
+#contents = open_and_read_file("green-eggs.txt")
+#Rebind contents to global scope since the next function will call it.
 
 
 def make_chains(text_string):
@@ -34,28 +35,38 @@ def make_chains(text_string):
         {('hi', 'there'): ['mary', 'juanita'], ('there', 'mary'): ['hi'], ('mary', 'hi': ['there']}
     """
 
-    chains = {}
-    tup = ()
-
-    words = contents.split() # indices is a list 
 
     # your code goes here
-    indices = range((len(words)) - 2) 
-    print indices
-    print type(indices)
 
+    chains = {}
+    #create empty dictionary to contain all key pair values
+  
+
+    words = text_string.split() # splitting contents to words list by empty spaces
+
+    indices = range((len(words)) - 2) 
+    # indices is a list of integers that represent the index position of each word in the words list 
+    #we subtract 2 from the entire range because the value_for_key = words[i+2]
 
     for i in indices:
-        for word in words:
-            key_tuple = tup + ((words[i]),(words[i+1]))
-            value_for_key = words[i+2]
-            chains[key_tuple] = value_for_key 
+        #for each i in indices, the for loop below will bind the index position of each word with each i.
+        # for word in words:
+        key_tuple = ((words[i]),(words[i+1]))
+        # print key_tuple
+        value_for_key = [words[i+2]]
+        # print value_for_key
+        # chains[key_tuple] = value_for_key 
+        # print chains
+        #for each word in words list, the first two words are rebounded to tup to create a key. The key is paired with the value.
 
 
-    # print chains
+        chains[key_tuple] = chains.get(key_tuple,[]) + value_for_key
+
+    print chains
     return chains
     
-print make_chains(contents)
+
+# print make_chains(contents)
 
     
 
