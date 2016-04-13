@@ -62,19 +62,10 @@ def make_chains(text_string):
 
         chains[key_tuple] = chains.get(key_tuple,[]) + value_for_key
 
-    print chains
+    # print chains
     return chains
-    
-
 # print make_chains(contents)
 
-    
-
-
-
-    
-
-    
 
 def make_text(chains):
     """Takes dictionary of markov chains; returns random text."""
@@ -83,8 +74,26 @@ def make_text(chains):
 
     # your code goes here
 
-    return text
+    for key_tuple, value_for_key in chains.items():
+        while True: 
+            random_key_1 = (key_tuple[1], choice(value_for_key)) 
+            if random_key_1 != KeyError:
+                random_value_1 = chains.get(random_key_1) #It's a list
+                random_key_2 = (random_key_1[1], choice(random_value_1))
+            else:
+                break
 
+
+        text = random_key_1[0] + ", " + random_key_1[1] + ", " +  random_value_1[0] + ", " +  random_key_2[0] + ", " + random_key_2[1]
+
+      #  a = random_value_1[0], random_key_1 [0], random_key_2[0]   why you are a tuple??????
+
+        print type(text)
+        print text
+
+        # print a
+
+    return text
 
 input_path = "green-eggs.txt"
 
